@@ -1,6 +1,6 @@
 @extends('template.app')
 @section('page-title')
-    New Crew
+    Edit Crew
 @endsection
 @section('main-content')
     <main class="bg-slate-500 min-w-screen min-h-screen p-5">
@@ -8,11 +8,12 @@
             {{ implode('', $errors->all('<div>:message</div>')) }}
         @endif
         <div id="title" class="mx-auto text-center h-14 mt-[10px] flex flex-col justify-center">
-            <h1 class="text-black text-2xl font-bold">Add a crew</h1>
+            <h1 class="text-black text-2xl font-bold">Edit a crew</h1>
         </div>
         <div id="container" class="w-[30%] mx-auto bg-green-500 rounded-lg p-5">
-            <form method="POST" action="{{ route('crew.store') }}" class="w-full max-w-lg">
+            <form method="POST" action="{{ route('crew.update', $crew->id) }}" class="w-full max-w-lg">
                 @csrf
+                @method('PUT')
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -23,9 +24,9 @@
                                 focus:bg-white"
                                 id="grid-first-name"
                                 name="first_name"
-                                type="text"
-                                placeholder="Jane">
-{{--                        <p class="text-red-500 text-xs italic">Please fill out this field.</p>--}}
+                                value="{{ $crew->first_name }}"
+                                type="text">
+                        {{--                        <p class="text-red-500 text-xs italic">Please fill out this field.</p>--}}
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
@@ -35,8 +36,8 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-middle-name"
                                 name="middle_name"
-                                type="text"
-                                placeholder="Doe">
+                                value="{{ $crew->middle_name }}"
+                                type="text">
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
@@ -46,6 +47,7 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-last-name"
                                 name="last_name"
+                                value="{{ $crew->last_name }}"
                                 type="text"
                                 placeholder="Doe">
                     </div>
@@ -57,6 +59,7 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-email"
                                 name="email"
+                                value="{{ $crew->email }}"
                                 type="email"
                                 placeholder="Email@address">
                     </div>
@@ -70,8 +73,9 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-password"
                                 name="address"
+                                value="{{ $crew->address }}"
                                 type="text">
-{{--                        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
+                        {{--                        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -83,6 +87,7 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-education"
                                 name="education"
+                                value="{{ $crew->education }}"
                                 type="text">
                         {{--                        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
                     </div>
@@ -96,6 +101,7 @@
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-number"
                                 name="number"
+                                value="{{ $crew->contact_number }}"
                                 type="number">
                         {{--                        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
                     </div>

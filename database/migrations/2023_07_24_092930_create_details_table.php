@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('education');
             $table->string('address');
             $table->string('contact_number');
+            $table->foreign('crew_id')
+                ->references('id')
+                ->on('crews')
+                ->onDelete('cascade');
         });
     }
 

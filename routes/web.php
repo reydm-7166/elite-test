@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CrewController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,16 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::resource('crew', CrewController::class, [
         'names' => 'crew',
         'parameters' => ['' => 'id']
     ])->except('index');
+
+    Route::resource('document', DocumentController::class, [
+        'names' => 'document',
+        'parameters' => ['' => 'id']
+    ]);
 });
 

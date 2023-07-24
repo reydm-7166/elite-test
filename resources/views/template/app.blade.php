@@ -10,8 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- fontawesome   --}}
     <script src="https://kit.fontawesome.com/4f2d93f234.js" crossorigin="anonymous"></script>
+    {{--  jQuery  --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     @vite('resources/css/app.css')
-    @yield('javascript')
+    <script>
+        @yield('javascript')
+    </script>
+    @yield('exclusive-tailwind-cdn')
     <title>
         	@yield('page-title')
     </title>

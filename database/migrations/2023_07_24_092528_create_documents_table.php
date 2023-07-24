@@ -14,13 +14,19 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->integer('code');
-            $table->foreignId('crew_id');
-            $table->string('document_name');
-            $table->integer('document_number');
+            $table->foreignId('crew_id')->nullable();
+            $table->string('name');
+            $table->integer('number');
             $table->dateTime('date_issued');
             $table->dateTime('date_expiry');
             $table->string('remarks');
             $table->timestamps();
+
+            $table->foreign('crew_id')
+                ->references('id')
+                ->on('crews')
+                ->onDelete('cascade');
+
         });
     }
 

@@ -2,6 +2,76 @@
 @section('page-title')
     Dashboard
 @endsection
+@section('javascript')
+    function openDeleteModal(id)
+    {
+        Swal.fire({
+            icon: 'question',
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            customClass: {
+            confirmButton: 'px-6 mx-2 bg-green-500 hover:bg-green-600 text-white py-2 rounded',
+            cancelButton: 'px-6 mx-2 bg-red-500 hover:bg-red-600 text-white py-2 rounded',
+            },
+            buttonsStyling: false,
+            }).then((result) => {
+            if (result.isConfirmed) {
+                deleteProduct(id);
+            }
+        })
+    }
+    function deleteProduct(id)
+    {
+        $.ajax({
+        url: '/admin/crew/' + id,
+        type: 'DELETE',
+        data: {
+            "_token": "{{ csrf_token() }}",
+            "id": id,
+        },
+        success: function (data) {
+            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Crew Deleted',
+                position: 'top-end',
+                toast: true,
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                customClass: {
+                title: 'text-white', // Custom CSS class for the title
+                icon: 'swal2-icon-error', // Use "swal2-icon-success" for a green checkmark icon
+                },
+                background: '#f44336', // Red background color
+                iconColor: '#ffffff', // White icon color
+            });
+        },
+        error: function (data) {
+            console.log(data);
+        }
+        });
+    }
+
+    $(document).ready(function () {
+       @if($message = session('success'))
+           Swal.fire({
+               icon: 'success',
+               title: 'Crew Created',
+               toast: true,
+               position: 'top-end',
+               showConfirmButton: false,
+               timer: 4000,
+               timerProgressBar: true,
+               background: '#4caf50',
+               iconColor: 'white',
+           });
+        @endif
+});
+
+@endsection
 @section('main-content')
     <main class="bg-slate-500 min-h-screen">
         <div id="container"
@@ -22,12 +92,10 @@
                     </div>
                 </div>
                 <div id="table-container" class="h-[800px] p-2 mx-auto w-full rounded-[10px]">
-                    <!-- component -->
                     <div class="overflow-x-auto rounded-[10px]">
-                        <div class="min-w-screen min-h-fitflex flex-col bg-gray-100 font-sans overflow-hidden">
+                        <div class="min-w-screen min-h-fit flex flex-col bg-gray-100 font-sans overflow-hidden">
                             <div class="w-full">
                                 <div class="bg-white shadow-md rounded my-6">
-
                                     <table class="min-w-max w-full table-auto">
                                         <thead>
                                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -68,9 +136,11 @@
                                                 </td>
                                                 <td class="py-3 px-6 text-center">
                                                     <div class="flex item-center justify-center">
-                                                        <a href="" class="mx-2 text-blue-500 underline underline-offset-4">View</a>
-                                                        <a href="" class="mx-2 text-blue-500 underline underline-offset-4">Edit</a>
-                                                        <a href="" class="mx-2 text-blue-500 underline underline-offset-4">Delete</a>
+                                                        <a href="{{ route('crew.show', $crew->id) }}" class="mx-2 text-blue-500 underline underline-offset-4">View</a>
+                                                        <a href="{{ route('crew.edit', $crew->id) }}" class="mx-2 text-blue-500 underline underline-offset-4">Edit</a>
+                                                        <p onclick="openDeleteModal({{ $crew->id }})" class="mx-2 text-blue-500 underline underline-offset-4">
+                                                            Delete
+                                                        </p>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -80,6 +150,7 @@
                                 </div>
                             </div>
                             <div id="pagination" class="w-full text-center mt-8 mb-8">
+                                {{ $crews->links() }}
                             </div>
                         </div>
                     </div>

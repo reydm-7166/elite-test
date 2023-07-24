@@ -8,3 +8,10 @@
 .main-font {
     font-family: 'Montserrat', sans-serif;
 }
+#details p {
+    font-family: 'Montserrat', sans-serif;
+}
+#icons p:hover {
+    cursor: pointer;
+    color: black;
+}
