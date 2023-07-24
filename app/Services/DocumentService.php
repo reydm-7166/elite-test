@@ -7,7 +7,7 @@ use App\Models\Details;
 use App\Models\Document;
 use DB;
 
-class CrewService
+class DocumentService
 {
     public function __construct
     (
@@ -17,20 +17,22 @@ class CrewService
 
     public function update(array $validated, string $id) : bool
     {
-        $record = $this->$document->findOrFail($id);
-        try {
-            $record->update([
+        $record = $this->document->findOrFail($id);
+
+        $update = $record->update([
                 'code' => $validated['code'],
+                'crew_id' => $validated['crew_id'],
                 'name' => $validated['name'],
                 'number' => $validated['number'],
                 'date_issued' => $validated['date_issued'],
                 'date_expiry' => $validated['date_expiry'],
                 'remarks' => $validated['remarks'],
-            ]);
-        } catch (\Exception $e) {
-            return false;
+        ]);
+        if($update)
+        {
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

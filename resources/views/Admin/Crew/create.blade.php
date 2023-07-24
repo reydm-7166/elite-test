@@ -100,7 +100,10 @@
                         {{--                        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
                     </div>
                 </div>
-                <button type="submit" class="submit bg-blue-500 p-2 px-3 rounded-lg main-font">Submit</button>
+                <div id="buttons" class="w-full text-end">
+                    <button type="submit" class="text-right mx-auto submit bg-blue-500 p-2 px-3 rounded-lg main-font">Submit</button>
+                </div>
+
             </form>
         </div>
     </main>

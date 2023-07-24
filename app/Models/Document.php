@@ -13,8 +13,8 @@ class Document extends Model
     protected $fillable = [
         'crew_id',
         'code',
-        'document_name',
-        'document_number',
+        'name',
+        'number',
         'date_issued',
         'date_expiry',
         'remarks',

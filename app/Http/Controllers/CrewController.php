@@ -6,7 +6,7 @@ use App\Http\Requests\CrewStore;
 use App\Models\Crew;
 use App\Services\CrewService;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CrewController extends Controller
 {
@@ -20,28 +20,28 @@ class CrewController extends Controller
         return view('admin.crew.create');
     }
 
-    public function store(CrewStore $request)
+    public function store(CrewStore $request): RedirectResponse
     {
         $validated = $request->validated();
-        if(!$this->crewService->store($validated, $id)) {
+        if(!$this->crewService->store($validated)) {
             return redirect()->back()->with('error', 'Something went wrong!');
         }
         return redirect()->route('admin.dashboard')->with('success', 'Crew successfully added!');
     }
-    public function show(string $id)
+    public function show(string $id) : View
     {
         return view('admin.crew.show', [
             'crew' => $this->crewService->getById($id)
         ]);
     }
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
         return view('admin.crew.edit', [
             'crew' => $this->crewService->getById($id)
         ]);
     }
 
-    public function update(CrewStore $request, string $id)
+    public function update(CrewStore $request, string $id) : RedirectResponse
     {
         // I decided to put the update logic in the services since that's where the models were injected, it would be too redundant to inject them here as well.
         // might as well put the all the logic in the services.
@@ -50,7 +50,6 @@ class CrewController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
         return redirect()->route('admin.dashboard')->with('success', 'Crew successfully updated!');
-
     }
 
     public function destroy(string $id)
