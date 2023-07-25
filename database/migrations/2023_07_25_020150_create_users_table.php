@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_admin')->default(0);
+            $table->boolean('is_admin')->default(1);
             $table->string('username', 10);
             $table->string('password');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
