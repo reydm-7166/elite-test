@@ -23,7 +23,7 @@ class DocumentStore extends FormRequest
     {
         return [
             'code' => 'required|integer',
-            'crew_id' => 'required|integer',
+            'crew_id' => '',
             'name' => 'required|string',
             'number' => 'required|integer',
             'date_issued' => 'required|date',

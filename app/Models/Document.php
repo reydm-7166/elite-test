@@ -18,6 +18,8 @@ class Document extends Model
         'date_issued',
         'date_expiry',
         'remarks',
+        'created_at',
+        'updated_at',
     ];
 
     public function crews() : BelongsTo

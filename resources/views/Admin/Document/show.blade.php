@@ -1,4 +1,5 @@
 @extends('template.app')
+
 @section('page-title')
     {{ "Document: ". ucfirst($document->name) }}
 @endsection
@@ -39,6 +40,30 @@
                             {{ $document->remarks }}
                         </p>
                     </div>
+
+
+                </div>
+                <div id="edit" class="w-100 mt-5 rounded-lg min-h-[70px] flex justify-center items-center">
+                    <p class="mx-2 text-black text-lg bg-green-500 px-6 py-2 rounded-lg hover:cursor-pointer hover:bg-green-600 hover:shadow-lg">
+                        <a href="{{ route('document.edit', $document->id) }}">
+                            Edit
+                            <i class="ms-2 fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </p>
+                    <p class="mx-2">
+                        <form action="{{ route('document.destroy', $document->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <!-- Add a confirmation button or link -->
+                            <button
+                                    type="submit"
+                                    class=" text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:cursor-pointer hover:bg-red-600 hover:shadow-lg"
+                                    onclick="return confirm('Are you sure you want to delete this document?')">
+                                Delete
+                                <i class="ms-2 fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </p>
                 </div>
             </div>
         </div>

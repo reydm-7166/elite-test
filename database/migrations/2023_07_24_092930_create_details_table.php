@@ -21,6 +21,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('crews')
                 ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

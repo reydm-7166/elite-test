@@ -149,7 +149,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div id="pagination" class="w-full text-center mt-8 mb-8">
+                            <div id="pagination" class="w-full text-center mt-8 mb-8 bg-blue-500">
                                 {{ $crews->links() }}
                             </div>
                         </div>

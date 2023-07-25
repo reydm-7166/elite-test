@@ -1,17 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-
-.main-font {
-    font-family: 'Montserrat', sans-serif;
-}
-#details p {
-    font-family: 'Montserrat', sans-serif;
-}
-#icons p:hover {
-    cursor: pointer;
-    color: black;
-}
