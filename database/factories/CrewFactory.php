@@ -19,7 +19,7 @@ class CrewFactory extends Factory
     {
         return [
             'first_name' => fake()->firstName(),
-            'middle_name' => fake()->name(),
+            'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
         ];

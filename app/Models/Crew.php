@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
 class Crew extends Model
 {
     use HasFactory;
@@ -24,6 +23,10 @@ class Crew extends Model
     public function documents(): HasMany
     {
         return $this->hasMany(Document::class);
+    }
+    public function trainings(): HasMany
+    {
+        return $this->hasMany(Training::class);
     }
 
 

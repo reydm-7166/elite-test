@@ -74,14 +74,15 @@
 @endsection
 @section('main-content')
     <main class="bg-slate-500 min-h-screen">
+        @extends('template.nav')
         <div id="container"
              class="bg-[#C1CBDC] w-full mx-auto min-h-screen h-fit flex flex-col items-center">
             <div class="w-[70%]">
-                <div id="title" class="mx-auto text-center h-14 mt-[10px] flex flex-col justify-center">
+                <div id="title" class="mx-auto text-center h-14 flex flex-col justify-center">
                     <h1 class="text-black text-2xl font-bold">Crews</h1>
                 </div>
-                <div id="sort-section" class="mt-3 w-full h-12 px-2 flex flex-row">
-                    <div id="search" class="w-full flex items-center justify-end">
+                <div id="add-section" class="w-full h-12 px-2 flex flex-row">
+                    <div id="add" class="w-full flex items-center justify-end">
                         <button class="mx-5 text-2xl text-blue-500 hover:text-blue-700"
                                 data-te-toggle="tooltip"
                                 title="Add new product">
@@ -91,7 +92,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="table-container" class="h-[800px] p-2 mx-auto w-full rounded-[10px]">
+                <div id="table-container" class="h-[700px] p-2 mx-auto w-full rounded-[10px]">
                     <div class="overflow-x-auto rounded-[10px]">
                         <div class="min-w-screen min-h-fit flex flex-col bg-gray-100 font-sans overflow-hidden">
                             <div class="w-full">
@@ -122,7 +123,7 @@
                                                 </td>
                                                 <td id="last" class="py-3 px-6 text-center truncate">
                                                     <div class="flex item-center justify-center">
-                                                        <span class="font-medium text-xs truncate">
+                                                        <span class="font-medium">
                                                             {{ $crew->last_name }}
                                                         </span>
                                                     </div>
@@ -149,7 +150,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div id="pagination" class="w-full text-center mt-8 mb-8 bg-blue-500">
+                            <div id="pagination" class="w-full text-center mt-8 mb-8 flex justify-center">
                                 {{ $crews->links() }}
                             </div>
                         </div>
